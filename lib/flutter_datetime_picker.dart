@@ -396,6 +396,9 @@ class _DatePickerState extends State<_DatePickerComponent> {
   }
 
   Widget _renderItemView(DatePickerTheme theme) {
+    final int _baseKey = widget.pickerModel.currentLeftIndex() +
+        widget.pickerModel.currentMiddleIndex() * 100 +
+        widget.pickerModel.currentRightIndex() * 10000;
     return Container(
       color: theme.backgroundColor,
       child: Row(
@@ -404,7 +407,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
           Container(
             child: widget.pickerModel.layoutProportions()[0] > 0
                 ? _renderColumnView(
-                    ValueKey(widget.pickerModel.currentLeftIndex()),
+                    ValueKey(_baseKey),
                     theme,
                     widget.pickerModel.leftStringAtIndex,
                     leftScrollCtrl,
@@ -425,7 +428,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
           Container(
             child: widget.pickerModel.layoutProportions()[1] > 0
                 ? _renderColumnView(
-                    ValueKey(widget.pickerModel.currentLeftIndex()),
+                    ValueKey(_baseKey),
                     theme,
                     widget.pickerModel.middleStringAtIndex,
                     middleScrollCtrl,
@@ -446,8 +449,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
           Container(
             child: widget.pickerModel.layoutProportions()[2] > 0
                 ? _renderColumnView(
-                    ValueKey(widget.pickerModel.currentMiddleIndex() * 100 +
-                        widget.pickerModel.currentLeftIndex()),
+                    ValueKey(_baseKey),
                     theme,
                     widget.pickerModel.rightStringAtIndex,
                     rightScrollCtrl,
