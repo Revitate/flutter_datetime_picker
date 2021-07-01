@@ -47,15 +47,15 @@ abstract class BasePickerModel {
 
 //a base class for picker data model
 class CommonPickerModel extends BasePickerModel {
-  late List<String> leftList;
-  late List<String> middleList;
-  late List<String> rightList;
-  late DateTime currentTime;
-  late int _currentLeftIndex;
-  late int _currentMiddleIndex;
-  late int _currentRightIndex;
+  List<String> leftList;
+  List<String> middleList;
+  List<String> rightList;
+  DateTime currentTime;
+  int _currentLeftIndex;
+  int _currentMiddleIndex;
+  int _currentRightIndex;
 
-  late LocaleType locale;
+  LocaleType locale;
 
   CommonPickerModel({LocaleType locale})
       : this.locale = locale ?? LocaleType.en;
@@ -128,8 +128,8 @@ class CommonPickerModel extends BasePickerModel {
 
 //a date picker model
 class DatePickerModel extends CommonPickerModel {
-  late DateTime maxTime;
-  late DateTime minTime;
+  DateTime maxTime;
+  DateTime minTime;
 
   DatePickerModel(
       {DateTime currentTime,
