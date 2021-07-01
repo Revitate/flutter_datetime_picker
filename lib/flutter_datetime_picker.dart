@@ -225,7 +225,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   AnimationController createAnimationController() {
     assert(_animationController == null);
     _animationController =
-        BottomSheet.createAnimationController(navigator!.overlay!);
+        BottomSheet.createAnimationController(navigator.overlay!);
     return _animationController!;
   }
 
@@ -299,7 +299,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
           return ClipRect(
             child: CustomSingleChildLayout(
               delegate: _BottomPickerLayout(
-                widget.route.animation!.value,
+                widget.route.animation.value,
                 theme,
                 showTitleActions: widget.route.showTitleActions!,
                 bottomPadding: bottomPadding,
