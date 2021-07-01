@@ -225,8 +225,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   AnimationController createAnimationController() {
     assert(_animationController == null);
     _animationController =
-        BottomSheet.createAnimationController(navigator.overlay!);
-    return _animationController!;
+        BottomSheet.createAnimationController(navigator.overlay);
+    return _animationController;
   }
 
   @override
@@ -293,7 +293,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     DatePickerTheme theme = widget.route.theme;
     return GestureDetector(
       child: AnimatedBuilder(
-        animation: widget.route.animation!,
+        animation: widget.route.animation,
         builder: (BuildContext context, Widget child) {
           final double bottomPadding = MediaQuery.of(context).padding.bottom;
           return ClipRect(
@@ -301,7 +301,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
               delegate: _BottomPickerLayout(
                 widget.route.animation.value,
                 theme,
-                showTitleActions: widget.route.showTitleActions!,
+                showTitleActions: widget.route.showTitleActions,
                 bottomPadding: bottomPadding,
               ),
               child: GestureDetector(
@@ -319,7 +319,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
 
   void _notifyDateChanged() {
     if (widget.onChanged != null) {
-      widget.onChanged!(widget.pickerModel.finalTime()!);
+      widget.onChanged(widget.pickerModel.finalTime());
     }
   }
 
@@ -491,7 +491,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
               onPressed: () {
                 Navigator.pop(context);
                 if (widget.route.onCancel != null) {
-                  widget.route.onCancel!();
+                  widget.route.onCancel();
                 }
               },
             ),
@@ -508,7 +508,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
               onPressed: () {
                 Navigator.pop(context, widget.pickerModel.finalTime());
                 if (widget.route.onConfirm != null) {
-                  widget.route.onConfirm!(widget.pickerModel.finalTime()!);
+                  widget.route.onConfirm(widget.pickerModel.finalTime());
                 }
               },
             ),

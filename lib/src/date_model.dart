@@ -542,9 +542,9 @@ class DateTimePickerModel extends CommonPickerModel {
       this.minTime = minTime;
       var now = DateTime.now();
       if (this.minTime != null && this.minTime.isAfter(now)) {
-        this.currentTime = this.minTime!;
+        this.currentTime = this.minTime;
       } else if (this.maxTime != null && this.maxTime.isBefore(now)) {
-        this.currentTime = this.maxTime!;
+        this.currentTime = this.maxTime;
       } else {
         this.currentTime = now;
       }
@@ -552,7 +552,7 @@ class DateTimePickerModel extends CommonPickerModel {
 
     if (this.minTime != null &&
         this.maxTime != null &&
-        this.maxTime.isBefore(this.minTime!)) {
+        this.maxTime.isBefore(this.minTime)) {
       // invalid
       this.minTime = null;
       this.maxTime = null;
@@ -561,7 +561,7 @@ class DateTimePickerModel extends CommonPickerModel {
     _currentLeftIndex = 0;
     _currentMiddleIndex = this.currentTime.hour;
     _currentRightIndex = this.currentTime.minute;
-    if (this.minTime != null && isAtSameDay(this.minTime!, this.currentTime)) {
+    if (this.minTime != null && isAtSameDay(this.minTime, this.currentTime)) {
       _currentMiddleIndex = this.currentTime.hour - this.minTime.hour;
       if (_currentMiddleIndex == 0) {
         _currentRightIndex = this.currentTime.minute - this.minTime.minute;
@@ -611,11 +611,11 @@ class DateTimePickerModel extends CommonPickerModel {
   String leftStringAtIndex(int index) {
     DateTime time = currentTime.add(Duration(days: index));
     if (minTime != null &&
-        time.isBefore(minTime!) &&
-        !isAtSameDay(minTime!, time)) {
+        time.isBefore(minTime) &&
+        isAtSameDay(minTime, time)) {
       return null;
     } else if (maxTime != null &&
-        time.isAfter(maxTime!) &&
+        time.isAfter(maxTime) &&
         !isAtSameDay(maxTime, time)) {
       return null;
     }
