@@ -6,13 +6,13 @@ import 'dart:math';
 //interface for picker data model
 abstract class BasePickerModel {
   //a getter method for left column data, return null to end list
-  String? leftStringAtIndex(int index);
+  String leftStringAtIndex(int index);
 
   //a getter method for middle column data, return null to end list
-  String? middleStringAtIndex(int index);
+  String middleStringAtIndex(int index);
 
   //a getter method for right column data, return null to end list
-  String? rightStringAtIndex(int index);
+  String rightStringAtIndex(int index);
 
   //set selected left index
   void setLeftIndex(int index);
@@ -33,7 +33,7 @@ abstract class BasePickerModel {
   int currentRightIndex();
 
   //return final time
-  DateTime? finalTime();
+  DateTime finalTime();
 
   //return left divider string
   String leftDivider();
@@ -57,21 +57,21 @@ class CommonPickerModel extends BasePickerModel {
 
   late LocaleType locale;
 
-  CommonPickerModel({LocaleType? locale})
+  CommonPickerModel({LocaleType locale})
       : this.locale = locale ?? LocaleType.en;
 
   @override
-  String? leftStringAtIndex(int index) {
+  String leftStringAtIndex(int index) {
     return null;
   }
 
   @override
-  String? middleStringAtIndex(int index) {
+  String middleStringAtIndex(int index) {
     return null;
   }
 
   @override
-  String? rightStringAtIndex(int index) {
+  String rightStringAtIndex(int index) {
     return null;
   }
 
@@ -121,7 +121,7 @@ class CommonPickerModel extends BasePickerModel {
   }
 
   @override
-  DateTime? finalTime() {
+  DateTime finalTime() {
     return null;
   }
 }
@@ -132,10 +132,10 @@ class DatePickerModel extends CommonPickerModel {
   late DateTime minTime;
 
   DatePickerModel(
-      {DateTime? currentTime,
-      DateTime? maxTime,
-      DateTime? minTime,
-      LocaleType? locale})
+      {DateTime currentTime,
+      DateTime maxTime,
+      DateTime minTime,
+      LocaleType locale})
       : super(locale: locale) {
     this.maxTime = maxTime ?? DateTime(2049, 12, 31);
     this.minTime = minTime ?? DateTime(1970, 1, 1);
@@ -309,7 +309,7 @@ class DatePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? leftStringAtIndex(int index) {
+  String leftStringAtIndex(int index) {
     if (index >= 0 && index < leftList.length) {
       return leftList[index];
     } else {
@@ -318,7 +318,7 @@ class DatePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? middleStringAtIndex(int index) {
+  String middleStringAtIndex(int index) {
     if (index >= 0 && index < middleList.length) {
       return middleList[index];
     } else {
@@ -327,7 +327,7 @@ class DatePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? rightStringAtIndex(int index) {
+  String rightStringAtIndex(int index) {
     if (index >= 0 && index < rightList.length) {
       return rightList[index];
     } else {
@@ -377,7 +377,7 @@ class TimePickerModel extends CommonPickerModel {
   bool showSecondsColumn;
 
   TimePickerModel(
-      {DateTime? currentTime, LocaleType? locale, this.showSecondsColumn: true})
+      {DateTime currentTime, LocaleType locale, this.showSecondsColumn: true})
       : super(locale: locale) {
     this.currentTime = currentTime ?? DateTime.now();
 
@@ -387,7 +387,7 @@ class TimePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? leftStringAtIndex(int index) {
+  String leftStringAtIndex(int index) {
     if (index >= 0 && index < 24) {
       return digits(index, 2);
     } else {
@@ -396,7 +396,7 @@ class TimePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? middleStringAtIndex(int index) {
+  String middleStringAtIndex(int index) {
     if (index >= 0 && index < 60) {
       return digits(index, 2);
     } else {
@@ -405,7 +405,7 @@ class TimePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? rightStringAtIndex(int index) {
+  String rightStringAtIndex(int index) {
     if (index >= 0 && index < 60) {
       return digits(index, 2);
     } else {
@@ -446,7 +446,7 @@ class TimePickerModel extends CommonPickerModel {
 
 //a time picker model
 class Time12hPickerModel extends CommonPickerModel {
-  Time12hPickerModel({DateTime? currentTime, LocaleType? locale})
+  Time12hPickerModel({DateTime currentTime, LocaleType locale})
       : super(locale: locale) {
     this.currentTime = currentTime ?? DateTime.now();
 
@@ -456,7 +456,7 @@ class Time12hPickerModel extends CommonPickerModel {
   }
 
   @override
-  String? leftStringAtIndex(int index) {
+  String leftStringAtIndex(int index) {
     if (index >= 0 && index < 12) {
       if (index == 0) {
         return digits(12, 2);
@@ -469,7 +469,7 @@ class Time12hPickerModel extends CommonPickerModel {
   }
 
   @override
-  String? middleStringAtIndex(int index) {
+  String middleStringAtIndex(int index) {
     if (index >= 0 && index < 60) {
       return digits(index, 2);
     } else {
@@ -478,7 +478,7 @@ class Time12hPickerModel extends CommonPickerModel {
   }
 
   @override
-  String? rightStringAtIndex(int index) {
+  String rightStringAtIndex(int index) {
     if (index == 0) {
       return i18nObjInLocale(this.locale)["am"] as String?;
     } else if (index == 1) {
@@ -516,14 +516,14 @@ class Time12hPickerModel extends CommonPickerModel {
 
 // a date&time picker model
 class DateTimePickerModel extends CommonPickerModel {
-  DateTime? maxTime;
-  DateTime? minTime;
+  DateTime maxTime;
+  DateTime minTime;
 
   DateTimePickerModel(
-      {DateTime? currentTime,
-      DateTime? maxTime,
-      DateTime? minTime,
-      LocaleType? locale})
+      {DateTime currentTime,
+      DateTime maxTime,
+      DateTime minTime,
+      LocaleType locale})
       : super(locale: locale) {
     if (currentTime != null) {
       this.currentTime = currentTime;
@@ -569,7 +569,7 @@ class DateTimePickerModel extends CommonPickerModel {
     }
   }
 
-  bool isAtSameDay(DateTime? day1, DateTime? day2) {
+  bool isAtSameDay(DateTime day1, DateTime day2) {
     return day1 != null &&
         day2 != null &&
         day1.difference(day2).inDays == 0 &&
@@ -608,7 +608,7 @@ class DateTimePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? leftStringAtIndex(int index) {
+  String leftStringAtIndex(int index) {
     DateTime time = currentTime.add(Duration(days: index));
     if (minTime != null &&
         time.isBefore(minTime!) &&
@@ -623,7 +623,7 @@ class DateTimePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? middleStringAtIndex(int index) {
+  String middleStringAtIndex(int index) {
     if (index >= 0 && index < 24) {
       DateTime time = currentTime.add(Duration(days: _currentLeftIndex));
       if (isAtSameDay(minTime, time)) {
@@ -646,7 +646,7 @@ class DateTimePickerModel extends CommonPickerModel {
   }
 
   @override
-  String? rightStringAtIndex(int index) {
+  String rightStringAtIndex(int index) {
     if (index >= 0 && index < 60) {
       DateTime time = currentTime.add(Duration(days: _currentLeftIndex));
       if (isAtSameDay(minTime, time) && _currentMiddleIndex == 0) {
