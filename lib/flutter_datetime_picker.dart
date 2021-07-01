@@ -249,8 +249,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
 class _DatePickerComponent extends StatefulWidget {
   _DatePickerComponent({
     Key key,
-    required this.route,
-    required this.pickerModel,
+    this.route,
+    this.pickerModel,
     this.onChanged,
     this.locale,
   }) : super(key: key);
